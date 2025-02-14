@@ -1,0 +1,66 @@
+# Ignorasi file sistem
+.DS_Store
+Thumbs.db
+
+# File yang dibuat oleh IDE (IntelliJ, Eclipse, VSCode)
+*.iml
+.idea/
+*.log
+*.swo
+*.swp
+.vscode/
+target/
+bin/
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+# File konfigurasi OS
+*.bak
+*.tmp
+*.swp
+
+# Konfigurasi dan File Dependency
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log
+
+# Maven dan Gradle
+.mvn/
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# File database dan socket MySQL
+*.sqlite
+*.db
+mysql.sock
+order-service/order-service/mysql/mysql.sock
+order-service/order-service/mysql/
+
+# File sementara dan cache
+*.log
+*.cache
+*.pid
+*.seed
+*.pid.lock
+
+# Konfigurasi Environment (jangan commit jika ada informasi sensitif)
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.*.local
+
+# File hasil testing
+coverage/
+test-output/
+*.lcov
+
+# File Docker
+docker-compose.override.yml
+*.dockerfile
