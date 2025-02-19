@@ -15,14 +15,24 @@ import lombok.RequiredArgsConstructor;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    public void placeOrder(OrderRequest OrderRequest){
-        //map OrderRequest to Order object
-        Order order = new Order();
-        order.setOrderNumber(UUID.randomUUID().toString());
-        order.setSkuCode(OrderRequest.skuCode());
-        order.setPrice(OrderRequest.price());
-        order.setQuantity(OrderRequest.quantity());
-        //save order to OrderRepository
-        orderRepository.save(order);
+    private final InventoryClient inventoryClient;
+
+    public void placeOrder(OrderRequest OrderRequest) {
+
+        
+        var isProductInStock = inventoryClient.isInStock(OrderRequest.skuCode(), OrderRequest.quantity());
+
+        if (isProductInStock) {
+            // map OrderRequest to Order object
+            Order order = new Order();
+            order.setOrderNumber(UUID.randomUUID().toString());
+            order.setSkuCode(OrderRequest.skuCode());
+            order.setPrice(OrderRequest.price());
+            order.setQuantity(OrderRequest.quantity());
+            // save order to OrderRepository
+            orderRepository.save(order);
+        } else {
+            throw new RuntimeException("Product with SkuCode " + orderRequest.skuCode() + " is not in stock.");
+        }
     }
 }

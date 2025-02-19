@@ -54,7 +54,7 @@ class OrderServiceApplicationTests {
 				     "quantity": 1
 				}
 				""";
-
+		
 		InventoryStubs.stubInventoryCall("iphone_15", 1);
 
 		var responseBodyString = RestAssured.given()
